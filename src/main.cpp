@@ -149,7 +149,17 @@ public:
         PersonasVect[pos] = PersonasVect[last_pos];
         PersonasVect.pop_back();
     }
+
+    void insert( int pos, Persona persona){
+        int last = PersonasVect.size() - 1;
+        PersonasVect.push_back( PersonasVect[last] );
+        for (int i = last; i > pos; i--)
+            PersonasVect[i] = PersonasVect[i - 1];
+        PersonasVect[pos] = persona; // insert the new element
+    }
+
 };
+
 
 
 int main() {
