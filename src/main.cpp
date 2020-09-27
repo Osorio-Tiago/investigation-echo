@@ -133,18 +133,21 @@ public:
     vector<Persona> PersonasVect;
 
     std::string toString(){
-        stringstream out;
         for(int i = 0; i < PersonasVect.capacity(); i++)
         {
-            out << PersonasVect[i].toString() << endl;
+            cout << PersonasVect[i].toString() << endl;
         }
-
-        return out.str();
     }
 
     void insertar(Persona persona){
         PersonasVect.insert(PersonasVect.begin(), persona);
 
+    }
+    void erase(int pos)
+    {
+        int last_pos = PersonasVect.size() - 1;
+        PersonasVect[pos] = PersonasVect[last_pos];
+        PersonasVect.pop_back();
     }
 };
 
