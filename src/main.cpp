@@ -22,6 +22,16 @@ struct Persona {
         edad = _edad;
         id = _id;
     }
+
+    string toString(){
+        ostringstream output;
+
+        output << "Nombre: " << nombre << endl;
+        output << "Edad: " << edad << endl;
+        output << "Identificacion: " << id << endl;
+
+        return output.str();
+    }
 };
 
 void save(Persona persona) {
@@ -141,10 +151,8 @@ int main() {
 
     for(int i = 0; i < PersonasV.PersonasVect.capacity(); i++)
     {
-        cout << PersonasV.PersonasVect[i].nombre << endl;
+        cout << PersonasV.PersonasVect[i].toString() << endl;
     }
-
-
 
 
   /*  Persona aux;
