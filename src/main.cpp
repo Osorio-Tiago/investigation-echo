@@ -131,6 +131,13 @@ class VectorPersonas
 {
 public:
     vector<Persona> PersonasVect;
+
+    std::string toString(){
+        for(int i = 0; i < PersonasVect.capacity(); i++)
+        {
+            cout << PersonasVect[i].toString() << endl;
+        }
+    }
 };
 
 
@@ -149,10 +156,7 @@ int main() {
     PersonasV.PersonasVect.emplace_back(p4);
 
 
-    for(int i = 0; i < PersonasV.PersonasVect.capacity(); i++)
-    {
-        cout << PersonasV.PersonasVect[i].toString() << endl;
-    }
+    std::cout<<PersonasV.toString()<<endl;
 
 
   /*  Persona aux;
