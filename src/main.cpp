@@ -115,13 +115,39 @@ void leer() {
     archivo.close();
 }
 
+
+
+class VectorPersonas
+{
+public:
+    vector<Persona> PersonasVect;
+};
+
+
 int main() {
     Persona p1("Luis", 23, 1);
     Persona p2("Christofer", 19, 2);
     Persona p3("Deiner", 43, 3);
     Persona p4("Maikol", 45, 4);
 
-    Persona aux;
+
+    VectorPersonas PersonasV;
+
+    PersonasV.PersonasVect.emplace_back(p1);
+    PersonasV.PersonasVect.emplace_back(p2);
+    PersonasV.PersonasVect.emplace_back(p3);
+    PersonasV.PersonasVect.emplace_back(p4);
+
+
+    for(int i = 0; i < PersonasV.PersonasVect.capacity(); i++)
+    {
+        cout << PersonasV.PersonasVect[i].nombre << endl;
+    }
+
+
+
+
+  /*  Persona aux;
     load(aux);
     cout << aux.id << endl;
     cout << endl;
@@ -143,6 +169,6 @@ int main() {
 
     //Leer archivo de texto
     leer();
-
+*/
     return 0;
 };
