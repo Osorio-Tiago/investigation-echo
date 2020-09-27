@@ -133,10 +133,13 @@ public:
     vector<Persona> PersonasVect;
 
     std::string toString(){
+        stringstream out;
         for(int i = 0; i < PersonasVect.capacity(); i++)
         {
-            cout << PersonasVect[i].toString() << endl;
+            out << PersonasVect[i].toString() << endl;
         }
+
+        return out.str();
     }
 };
 
