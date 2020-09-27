@@ -138,6 +138,11 @@ public:
             cout << PersonasVect[i].toString() << endl;
         }
     }
+
+    void insertar(Persona persona){
+        PersonasVect.insert(PersonasVect.begin(), persona);
+
+    }
 };
 
 
