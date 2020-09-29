@@ -148,7 +148,13 @@ class VectorPersonas : public Serializable
 public:
     Collection<Persona> array;
 
-    VectorPersonas();
+    VectorPersonas(){
+        setClassName("Array de personas");
+        for (int i = 0; i < array.size(); i++)
+        {
+            Register("Persona",array.getItem(i));
+        }
+    }
 
     std::string toString() {
         ostringstream out;
