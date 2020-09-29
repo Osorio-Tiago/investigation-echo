@@ -6,7 +6,7 @@
 #include <string.h> //pasar de string cadena de char
 #include <vector>
 #include <sstream>
-#include "xmlserialization.h"
+#include "XMLSerialization.h"
 using namespace xmls;
 using namespace std;
 
@@ -16,7 +16,6 @@ struct Persona : public Serializable{
     xInt id;
 
     Persona();
-    Persona(string nombre, int edad, int id);
     string toString();
 
 };
@@ -29,12 +28,6 @@ Persona::Persona()
     Register("Edad", &edad);
     Register("Identificacion", &id);
 
-}
-
-Persona::Persona(string nombre, int edad, int id) {
-    this->nombre = nombre;
-    this->edad = edad;
-    this->id = id;
 }
 
 string Persona::toString() {
@@ -170,6 +163,8 @@ public:
     {
         Register("VectorPersonas", &array);
     }
+
+
 };
 
 
@@ -195,6 +190,7 @@ int main() {
     persona1->id = 123456;
 
     arrayPers->insertar(persona1);
+
     auto* persona2 = new Persona;
 
     persona2->nombre = "Angelo";
@@ -203,24 +199,25 @@ int main() {
 
     arrayPers->insertar(persona2);
 
+    // -------------------------------- toString del vector  ----------------------
+
     cout<<arrayPers->toString()<<endl;
 
     // Ahora vamos a crear un archivo txt con estructura en XML:
 
     ofstream file;
     file.open("ArchivoVectorPersonas.txt"); //txt
-    //.good();
     string xml = arrayPers->toXML();
     file << xml;
     file.close();
 
     cout << "\n\n\tEl archivo XML se debera ver algo asi:\n\n";
 
-   // cout << arrayPers->toXML();
+    cout << arrayPers->toXML();
+
+
+
 */
-
-
-
 
     // Ahora voy a leer el archivo txt que esta serializado para cargarlo al vector
 
@@ -228,7 +225,7 @@ int main() {
     string texto, xmlData;
     try { archivo.open("ArchivoVectorPersonas.txt", ios::in); }
     catch (std::ifstream::failure a) {
-        cout << "no se pudo abrir el archivo";
+        cerr << '\a' << "no se pudo abrir el archivo";
         exit(1);
     }
     cout << endl;
@@ -240,10 +237,8 @@ int main() {
 
 
     if(Serializable::fromXML(xmlData, arrayPers)) {
-
         cout << arrayPers->toString();
-    }else
-    {
+    }else {
         cerr << '\a' << "El programa ha fallado con exito.";
     }
     return 0;
