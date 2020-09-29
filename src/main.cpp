@@ -13,30 +13,45 @@
 using namespace std;
 using namespace xmls;
 
-struct Persona: public Serializable{
-    char nombre[20];
-    int edad;
-    int id;
+struct Persona : public Serializable{
+    xString nombre;
+    xInt edad;
+    xInt id;
 
-    Persona() = default;
+    Persona();
+    Persona(string nombre, int edad, int id);
+    string toString();
 
-    Persona(string _name, int _edad, int _id) {
-        strcpy(nombre, _name.c_str());
-        edad = _edad;
-        id = _id;
-    }
+};
 
-    string toString(){
+//Definición de los métodos
+Persona::Persona()
+{
+    setClassName("Persona");
+    Register("Nombre", &nombre);
+    Register("Edad", &edad);
+    Register("Identificacion", &id);
+
+}
+
+Persona::Persona(string nombre, int edad, int id) {
+    this->nombre = nombre;
+    this->edad = edad;
+    this->id = id;
+}
+
+string Persona::toString() {
+    {
         ostringstream output;
-
-        output << "Nombre: " << nombre << endl;
-        output << "Edad: " << edad << endl;
-        output << "Identificacion: " << id << endl;
+        output << "Nombre: " << nombre.value() << endl;
+        output << "Edad: " << edad.value() << endl;
+        output << "Identificacion: " << id.value() << endl;
 
         return output.str();
     }
+}
 
-};
+//-----------------------------------------------------------------------------
 
 void save(Persona persona) {
     ofstream archivo;
