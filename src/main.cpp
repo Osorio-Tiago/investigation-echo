@@ -187,29 +187,45 @@ int main() {
 
     arrayPers->insertar(persona);
 
+    Persona* persona1 = new Persona;
 
-  /*  Persona aux;
-    load(aux);
-    cout << aux.id << endl;
-    cout << endl;
-    ejemploSeekgYTellg(aux);
-    cout << endl;
-    cout << aux.nombre << " " << aux.edad << endl;
+    persona1->nombre = "Ariadna";
+    persona1->edad = 20;
+    persona1->id = 123456;
 
-    //Archivo binario
-    save(p1);
-    save(p2);
-    save(p3);
-    save(p4);
+    arrayPers->insertar(persona1);
+    Persona* persona2 = new Persona;
 
-    //Archivo de texto
-    guardar(p1);
-    guardar(p2);
-    guardar(p3);
-    guardar(p4);
+    persona2->nombre = "Angelo";
+    persona2->edad = 18;
+    persona2->id = 987654;
 
-    //Leer archivo de texto
-    leer();
-*/
+    arrayPers->insertar(persona2);
+
+
+
+    /*  Persona aux;
+      load(aux);
+      cout << aux.id << endl;
+      cout << endl;
+      ejemploSeekgYTellg(aux);
+      cout << endl;
+      cout << aux.nombre << " " << aux.edad << endl;
+
+      //Archivo binario
+      save(p1);
+      save(p2);
+      save(p3);
+      save(p4);
+
+      //Archivo de texto
+      guardar(p1);
+      guardar(p2);
+      guardar(p3);
+      guardar(p4);
+
+      //Leer archivo de texto
+      leer();
+  */
     return 0;
 };
