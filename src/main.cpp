@@ -175,10 +175,11 @@ public:
 
 
 int main() {
+
+
     VectorPersonas* arrayPers = new ServicioPersonasConPersistencia();
-
-
-    Persona* persona = new Persona;
+/*
+    auto* persona = new Persona;
 
     persona->nombre = "Santiago";
     persona->edad = 19;
@@ -187,14 +188,14 @@ int main() {
 
     arrayPers->insertar(persona);
 
-    Persona* persona1 = new Persona;
+    auto* persona1 = new Persona;
 
     persona1->nombre = "Ariadna";
     persona1->edad = 20;
     persona1->id = 123456;
 
     arrayPers->insertar(persona1);
-    Persona* persona2 = new Persona;
+    auto* persona2 = new Persona;
 
     persona2->nombre = "Angelo";
     persona2->edad = 18;
@@ -202,30 +203,48 @@ int main() {
 
     arrayPers->insertar(persona2);
 
+    cout<<arrayPers->toString()<<endl;
+
+    // Ahora vamos a crear un archivo txt con estructura en XML:
+
+    ofstream file;
+    file.open("ArchivoVectorPersonas.txt"); //txt
+    //.good();
+    string xml = arrayPers->toXML();
+    file << xml;
+    file.close();
+
+    cout << "\n\n\tEl archivo XML se debera ver algo asi:\n\n";
+
+   // cout << arrayPers->toXML();
+*/
 
 
-    /*  Persona aux;
-      load(aux);
-      cout << aux.id << endl;
-      cout << endl;
-      ejemploSeekgYTellg(aux);
-      cout << endl;
-      cout << aux.nombre << " " << aux.edad << endl;
 
-      //Archivo binario
-      save(p1);
-      save(p2);
-      save(p3);
-      save(p4);
 
-      //Archivo de texto
-      guardar(p1);
-      guardar(p2);
-      guardar(p3);
-      guardar(p4);
+    // Ahora voy a leer el archivo txt que esta serializado para cargarlo al vector
 
-      //Leer archivo de texto
-      leer();
-  */
+    ifstream archivo;
+    string texto, xmlData;
+    try { archivo.open("ArchivoVectorPersonas.txt", ios::in); }
+    catch (std::ifstream::failure a) {
+        cout << "no se pudo abrir el archivo";
+        exit(1);
+    }
+    cout << endl;
+    while (!archivo.eof()) {
+        getline(archivo, texto);
+        xmlData += texto;
+    }
+    archivo.close();
+
+
+    if(Serializable::fromXML(xmlData, arrayPers)) {
+
+        cout << arrayPers->toString();
+    }else
+    {
+        cerr << '\a' << "El programa ha fallado con exito.";
+    }
     return 0;
 };
