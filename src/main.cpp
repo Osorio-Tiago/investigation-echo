@@ -8,9 +8,10 @@
 #include <sstream>
 
 
+
 using namespace std;
 
-struct Persona {
+struct Persona{
     char nombre[20];
     int edad;
     int id;
@@ -32,6 +33,7 @@ struct Persona {
 
         return output.str();
     }
+
 };
 
 void save(Persona persona) {
