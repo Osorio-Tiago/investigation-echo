@@ -115,16 +115,7 @@ void ejemploSeekgYTellg(Persona &persona) {
     //se cerro el archivo
 }
 
-void guardar(Persona persona) {
-    ofstream archivo;
-    try { archivo.open("ArchivoTexto.txt", ios::app); }
-    catch (std::ifstream::failure a) {
-        cout << "no se pudo abrir el archivo";
-        exit(1);
-    }
-    archivo << persona.nombre << ", " << persona.edad << ", " << persona.id << endl;
-    archivo.close();
-}
+
 
 void leer() {
     ifstream archivo;
@@ -184,21 +175,17 @@ public:
 
 
 int main() {
-    Persona p1("Luis", 23, 1);
-    Persona p2("Christofer", 19, 2);
-    Persona p3("Deiner", 43, 3);
-    Persona p4("Maikol", 45, 4);
+    VectorPersonas* arrayPers = new ServicioPersonasConPersistencia();
 
 
-    VectorPersonas PersonasV;
+    Persona* persona = new Persona;
 
-    PersonasV.PersonasVect.emplace_back(p1);
-    PersonasV.PersonasVect.emplace_back(p2);
-    PersonasV.PersonasVect.emplace_back(p3);
-    PersonasV.PersonasVect.emplace_back(p4);
+    persona->nombre = "Santiago";
+    persona->edad = 19;
+    persona->id = 604630008;
 
 
-    std::cout<<PersonasV.toString()<<endl;
+    arrayPers->insertar(persona);
 
 
   /*  Persona aux;
