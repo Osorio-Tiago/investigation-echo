@@ -50,6 +50,7 @@ string Persona::toString() {
 
 //-----------------------------------------------------------------------------
 
+/*
 void save(Persona persona) {
     ofstream archivo;
     //se crea una variable ofstream para poder usar los metodos necesarios para escribir en un archivo como .open, .write , .close ,...
@@ -140,7 +141,7 @@ void leer() {
     }
     archivo.close();
 }
-
+*/
 
 
 class VectorPersonas : public Serializable
