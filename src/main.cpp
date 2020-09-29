@@ -6,12 +6,14 @@
 #include <string.h> //pasar de string cadena de char
 #include <vector>
 #include <sstream>
+#include "XMLSerialization.h"
 
 
 
 using namespace std;
+using namespace xmls;
 
-struct Persona{
+struct Persona: public Serializable{
     char nombre[20];
     int edad;
     int id;
@@ -129,38 +131,27 @@ void leer() {
 
 
 
-class VectorPersonas
+class VectorPersonas : public Serializable
 {
 public:
-    vector<Persona> PersonasVect;
+    Collection<Persona> array;
 
-    std::string toString(){
-        for(int i = 0; i < PersonasVect.capacity(); i++)
+    VectorPersonas();
+
+    std::string toString() {
+        ostringstream out;
+        for (int i = 0; i < array.size(); i++)
         {
-            cout << PersonasVect[i].toString() << endl;
+            out << array.getItem(i)->toString();
         }
+        return out.str();
     }
 
-    void insertar(Persona persona){
-        PersonasVect.insert(PersonasVect.begin(), persona);
-
+    void insertar(Persona* persona) {
+        array.addItem(persona);
     }
-    void erase(int pos)
-    {
-        int last_pos = PersonasVect.size() - 1;
-        PersonasVect[pos] = PersonasVect[last_pos];
-        PersonasVect.pop_back();
-    }
-
-    void insert( int pos, Persona persona){
-        int last = PersonasVect.size() - 1;
-        PersonasVect.push_back( PersonasVect[last] );
-        for (int i = last; i > pos; i--)
-            PersonasVect[i] = PersonasVect[i - 1];
-        PersonasVect[pos] = persona; // insert the new element
-    }
-
 };
+
 
 
 
