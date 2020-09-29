@@ -6,12 +6,9 @@
 #include <string.h> //pasar de string cadena de char
 #include <vector>
 #include <sstream>
-#include "XMLSerialization.h"
-
-
-
-using namespace std;
+#include "xmlserialization.h"
 using namespace xmls;
+using namespace std;
 
 struct Persona : public Serializable{
     xString nombre;
@@ -167,6 +164,15 @@ public:
     }
 };
 
+class ServicioPersonasConPersistencia : public VectorPersonas
+{
+public:
+
+    ServicioPersonasConPersistencia()
+    {
+        Register("VectorPersonas", &array);
+    }
+};
 
 
 
